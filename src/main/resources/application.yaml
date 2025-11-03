@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: api
+  # PostgreSQL Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aidb
+    username: aiion
+    password: aiion4man
+    driver-class-name: org.postgresql.Driver
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: create   # 테이블 재생성 (기존 테이블 삭제 후 생성)
+    show-sql: true       # 콘솔에 SQL 출력
+    properties:
+      hibernate:
+        format_sql: true # SQL 포맷팅 출력
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+csv:
+  file:
+    path: static/csv/Leesoonsin.csv
