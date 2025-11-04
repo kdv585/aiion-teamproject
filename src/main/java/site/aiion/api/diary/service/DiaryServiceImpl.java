@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import site.aiion.api.common.Messenger;
+import site.aiion.api.common.domain.Messenger;
 import site.aiion.api.diary.domain.DiaryDTO;
 import site.aiion.api.diary.repository.DiaryRepository;
 import lombok.RequiredArgsConstructor;
