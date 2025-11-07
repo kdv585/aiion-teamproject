@@ -2,21 +2,26 @@ package site.aiion.api.player.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import site.aiion.api.team.domain.Team;
 
 @Entity
-@Table(name = "player")
+@Table(name = "players")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlayerEntity {
+public class Player {
 
     @Id
-    private String playerId;
+    private Long id;
+
+    private String playerUk;
 
     private String playerName;
 
@@ -40,5 +45,7 @@ public class PlayerEntity {
 
     private Integer weight;
 
-    private String teamId;
+    @ManyToOne
+    @JoinColumn(name = "team_uk", referencedColumnName = "teamUk")
+    private Team team;
 }

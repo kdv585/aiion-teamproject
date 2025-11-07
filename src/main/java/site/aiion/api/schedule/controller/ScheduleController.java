@@ -24,27 +24,32 @@ public class ScheduleController {
 
     @PostMapping
     public Messenger save(@RequestBody ScheduleDTO scheduleDTO) {
-        return scheduleService.save(scheduleDTO);
+        scheduleService.save(scheduleDTO);
+        return new Messenger(0, "일정 정보 저장 성공");
     }
 
     @PutMapping
     public Messenger update(@RequestBody ScheduleDTO scheduleDTO) {
-        return scheduleService.update(scheduleDTO);
+        scheduleService.update(scheduleDTO);
+        return new Messenger(0, "일정 정보 수정 성공");
     }
 
     @DeleteMapping
     public Messenger delete(@RequestBody ScheduleDTO scheduleDTO) {
-        return scheduleService.delete(scheduleDTO);
+        scheduleService.delete(scheduleDTO);
+        return new Messenger(0, "일정 정보 삭제 성공");
     }
 
     @PostMapping("/find")
     public Messenger findById(@RequestBody ScheduleDTO scheduleDTO) {
-        return scheduleService.findById(scheduleDTO);
+        scheduleService.findById(scheduleDTO);
+        return new Messenger(0, "일정 정보 조회 성공");
     }
 
     @GetMapping
     public Messenger findAll() {
-        return scheduleService.findAll();
+        scheduleService.findAll();
+        return new Messenger(0, "일정 목록 조회 성공");
     }
 
     @GetMapping("/list")

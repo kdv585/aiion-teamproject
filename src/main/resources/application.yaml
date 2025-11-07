@@ -10,7 +10,7 @@ spring:
   # JPA Configuration
   jpa:
     hibernate:
-      ddl-auto: update   # 테이블 재생성 (기존 테이블 삭제 후 생성)
+      ddl-auto: update   # 테이블 자동 업데이트
     show-sql: true       # 콘솔에 SQL 출력
     properties:
       hibernate:

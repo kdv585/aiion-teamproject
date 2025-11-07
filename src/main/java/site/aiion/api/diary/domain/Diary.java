@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DiaryEntitiy {
+public class Diary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diary_seq_gen")

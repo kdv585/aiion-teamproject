@@ -24,27 +24,32 @@ public class TeamController {
 
     @PostMapping
     public Messenger save(@RequestBody TeamDTO teamDTO) {
-        return teamService.save(teamDTO);
+        teamService.save(teamDTO);
+        return new Messenger(0, "팀 정보 저장 성공");
     }
 
     @PutMapping
     public Messenger update(@RequestBody TeamDTO teamDTO) {
-        return teamService.update(teamDTO);
+        teamService.update(teamDTO);
+        return new Messenger(0, "팀 정보 수정 성공");
     }
 
     @DeleteMapping
     public Messenger delete(@RequestBody TeamDTO teamDTO) {
-        return teamService.delete(teamDTO);
+        teamService.delete(teamDTO);
+        return new Messenger(0, "팀 정보 삭제 성공");
     }
 
     @PostMapping("/find")
     public Messenger findById(@RequestBody TeamDTO teamDTO) {
-        return teamService.findById(teamDTO);
+        teamService.findById(teamDTO);
+        return new Messenger(0, "팀 정보 조회 성공");
     }
 
     @GetMapping
     public Messenger findAll() {
-        return teamService.findAll();
+        teamService.findAll();
+        return new Messenger(0, "팀 목록 조회 성공");
     }
 
     @GetMapping("/list")
@@ -53,4 +58,3 @@ public class TeamController {
     }
 
 }
-

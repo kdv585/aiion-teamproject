@@ -24,27 +24,32 @@ public class DiaryController {
 
     @PostMapping
     public Messenger save(@RequestBody DiaryDTO diaryDTO) {
-        return diaryService.save(diaryDTO);
+        diaryService.save(diaryDTO);
+        return new Messenger(0, "일기 정보 저장 성공");
     }
 
     @PutMapping
     public Messenger update(@RequestBody DiaryDTO diaryDTO) {
-        return diaryService.update(diaryDTO);
+        diaryService.update(diaryDTO);
+        return new Messenger(0, "일기 정보 수정 성공");
     }
 
     @DeleteMapping
     public Messenger delete(@RequestBody DiaryDTO diaryDTO) {
-        return diaryService.delete(diaryDTO);
+        diaryService.delete(diaryDTO);
+        return new Messenger(0, "일기 정보 삭제 성공");
     }
 
     @PostMapping("/find")
     public Messenger findById(@RequestBody DiaryDTO diaryDTO) {
-        return diaryService.findById(diaryDTO);
+        diaryService.findById(diaryDTO);
+        return new Messenger(0, "일기 정보 조회 성공");
     }
 
     @GetMapping
     public Messenger findAll() {
-        return diaryService.findAll();
+        diaryService.findAll();
+        return new Messenger(0, "일기 목록 조회 성공");
     }
 
     @GetMapping("/list")

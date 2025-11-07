@@ -37,10 +37,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Messenger findAll() {
-        Messenger messenger = new Messenger();
-        messenger.setCode(0);
-        messenger.setMessage("선수 목록 조회 성공");
-        return messenger;
+        return new Messenger(0, "선수 목록 조회 성공");
     }
 
     @Override

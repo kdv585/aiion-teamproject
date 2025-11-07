@@ -37,10 +37,7 @@ public class StadiumServiceImpl implements StadiumService {
 
     @Override
     public Messenger findAll() {
-        Messenger messenger = new Messenger();
-        messenger.setCode(0);
-        messenger.setMessage("경기장 목록 조회 성공");
-        return messenger;
+        return new Messenger(0, "경기장 목록 조회 성공");
     }
 
     @Override

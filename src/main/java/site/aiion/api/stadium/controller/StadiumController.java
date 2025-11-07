@@ -24,27 +24,32 @@ public class StadiumController {
 
     @PostMapping
     public Messenger save(@RequestBody StadiumDTO stadiumDTO) {
-        return stadiumService.save(stadiumDTO);
+        stadiumService.save(stadiumDTO);
+        return new Messenger(0, "경기장 정보 저장 성공");
     }
 
     @PutMapping
     public Messenger update(@RequestBody StadiumDTO stadiumDTO) {
-        return stadiumService.update(stadiumDTO);
+        stadiumService.update(stadiumDTO);
+        return new Messenger(0, "경기장 정보 수정 성공");
     }
 
     @DeleteMapping
     public Messenger delete(@RequestBody StadiumDTO stadiumDTO) {
-        return stadiumService.delete(stadiumDTO);
+        stadiumService.delete(stadiumDTO);
+        return new Messenger(0, "경기장 정보 삭제 성공");
     }
 
     @PostMapping("/find")
     public Messenger findById(@RequestBody StadiumDTO stadiumDTO) {
-        return stadiumService.findById(stadiumDTO);
+        stadiumService.findById(stadiumDTO);
+        return new Messenger(0, "경기장 정보 조회 성공");
     }
 
     @GetMapping
     public Messenger findAll() {
-        return stadiumService.findAll();
+        stadiumService.findAll();
+        return new Messenger(0, "경기장 목록 조회 성공");
     }
 
     @GetMapping("/list")
@@ -53,4 +58,3 @@ public class StadiumController {
     }
 
 }
-

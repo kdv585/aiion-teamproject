@@ -1,22 +1,32 @@
 package site.aiion.api.team.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import site.aiion.api.player.domain.Player;
+import site.aiion.api.stadium.domain.Stadium;
 
 @Entity
-@Table(name = "team")
+@Table(name = "teams", uniqueConstraints = @UniqueConstraint(columnNames = "team_uk"))
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeamEntity {
+public class Team {
 
     @Id
-    private String teamId;
+    private Long id;
+
+    private String teamUk;
 
     private String regionName;
 
@@ -42,5 +52,10 @@ public class TeamEntity {
 
     private String owner;
 
-    private String stadiumId;
+    @OneToMany(mappedBy = "team")
+    private List<Player> players;
+
+    @OneToOne
+    @JoinColumn(name = "stadium_uk", referencedColumnName = "stadiumUk")
+    private Stadium stadium;
 }

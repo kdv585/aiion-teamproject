@@ -37,10 +37,7 @@ public class DiaryServiceImpl implements DiaryService {
 
     @Override
     public Messenger findAll() {
-        Messenger messenger = new Messenger();
-        messenger.setCode(0);
-        messenger.setMessage("일기 목록 조회 성공");
-        return messenger;
+        return new Messenger(0, "일기 목록 조회 성공");
     }
 
     @Override

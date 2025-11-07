@@ -24,27 +24,32 @@ public class PlayerController {
 
     @PostMapping
     public Messenger save(@RequestBody PlayerDTO playerDTO) {
-        return playerService.save(playerDTO);
+        playerService.save(playerDTO);
+        return new Messenger(0, "선수 정보 저장 성공");
     }
 
     @PutMapping
     public Messenger update(@RequestBody PlayerDTO playerDTO) {
-        return playerService.update(playerDTO);
+        playerService.update(playerDTO);
+        return new Messenger(0, "선수 정보 수정 성공");
     }
 
     @DeleteMapping
     public Messenger delete(@RequestBody PlayerDTO playerDTO) {
-        return playerService.delete(playerDTO);
+        playerService.delete(playerDTO);
+        return new Messenger(0, "선수 정보 삭제 성공");
     }
 
     @PostMapping("/find")
     public Messenger findById(@RequestBody PlayerDTO playerDTO) {
-        return playerService.findById(playerDTO);
+        playerService.findById(playerDTO);
+        return new Messenger(0, "선수 정보 조회 성공");
     }
 
     @GetMapping
     public Messenger findAll() {
-        return playerService.findAll();
+        playerService.findAll();
+        return new Messenger(0, "선수 목록 조회 성공");
     }
 
     @GetMapping("/list")

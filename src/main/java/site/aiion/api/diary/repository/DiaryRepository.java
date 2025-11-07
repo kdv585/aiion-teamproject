@@ -9,7 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import site.aiion.api.common.domain.Messenger;
 import site.aiion.api.diary.domain.DiaryDTO;
-import site.aiion.api.diary.domain.DiaryEntitiy;
+import site.aiion.api.diary.domain.Diary;
 
 @Repository
 public class DiaryRepository {
@@ -18,77 +18,77 @@ public class DiaryRepository {
     private EntityManager entityManager;
 
     public Messenger save(DiaryDTO diary) {
-        DiaryEntitiy entity = toEntity(diary);
+        Diary entity = toEntity(diary);
         entityManager.persist(entity);
 
-        Messenger messenger = new Messenger();
-        messenger.setCode(0);
-        messenger.setMessage("일기 정보 저장 성공");
-        return messenger;
+        return Messenger.builder()
+                .code(0)
+                .message("일기 정보 저장 성공")
+                .build();
     }
 
     public Messenger saveAll(List<DiaryDTO> diaryList) {
         for (DiaryDTO diary : diaryList) {
-            DiaryEntitiy entity = toEntity(diary);
+            Diary entity = toEntity(diary);
             entityManager.persist(entity);
         }
         entityManager.flush();
 
-        Messenger messenger = new Messenger();
-        messenger.setCode(0);
-        messenger.setMessage("일기 정보 " + diaryList.size() + "건 저장 성공");
-        return messenger;
+        return Messenger.builder()
+                .code(0)
+                .message("일기 정보 " + diaryList.size() + "건 저장 성공")
+                .build();
     }
 
     public Messenger update(DiaryDTO diary) {
-        DiaryEntitiy entity = toEntity(diary);
+        Diary entity = toEntity(diary);
         entityManager.merge(entity);
 
-        Messenger messenger = new Messenger();
-        messenger.setCode(0);
-        messenger.setMessage("일기 정보 수정 성공");
-        return messenger;
+        return Messenger.builder()
+                .code(0)
+                .message("일기 정보 수정 성공")
+                .build();
     }
 
     public Messenger delete(DiaryDTO diaryDTO) {
         if (diaryDTO.getDiaryId() != null) {
-            DiaryEntitiy entity = entityManager.find(DiaryEntitiy.class, diaryDTO.getDiaryId());
+            Diary entity = entityManager.find(Diary.class, diaryDTO.getDiaryId());
             if (entity != null) {
                 entityManager.remove(entity);
             }
         }
 
-        Messenger messenger = new Messenger();
-        messenger.setCode(0);
-        messenger.setMessage("일기 정보 삭제 성공");
-        return messenger;
+        return Messenger.builder()
+                .code(0)
+                .message("일기 정보 삭제 성공")
+                .build();
     }
 
     public Messenger findById(DiaryDTO diaryDTO) {
         if (diaryDTO.getDiaryId() != null) {
-            entityManager.find(DiaryEntitiy.class, diaryDTO.getDiaryId());
+            entityManager.find(Diary.class, diaryDTO.getDiaryId());
         }
 
-        Messenger messenger = new Messenger();
-        messenger.setCode(0);
-        messenger.setMessage("일기 정보 조회 성공");
-        return messenger;
+        return Messenger.builder()
+                .code(0)
+                .message("일기 정보 조회 성공")
+                .build();
     }
 
     public List<DiaryDTO> findAll() {
-        List<DiaryEntitiy> entities = entityManager.createQuery(
-                "SELECT d FROM DiaryEntitiy d", DiaryEntitiy.class)
+        List<Diary> entities = entityManager.createQuery(
+                "SELECT d FROM Diary d", Diary.class)
                 .getResultList();
 
         List<DiaryDTO> diaryList = new ArrayList<>();
-        for (DiaryEntitiy entity : entities) {
+        for (Diary entity : entities) {
             diaryList.add(toDTO(entity));
         }
         return diaryList;
     }
 
-    private DiaryEntitiy toEntity(DiaryDTO dto) {
-        return new DiaryEntitiy(
+    private Diary toEntity(DiaryDTO dto) {
+        return new Diary(
                 dto.getDiaryId(),
                 dto.getYear(),
                 dto.getMonth(),
@@ -98,7 +98,7 @@ public class DiaryRepository {
                 dto.getContent());
     }
 
-    private DiaryDTO toDTO(DiaryEntitiy entity) {
+    private DiaryDTO toDTO(Diary entity) {
         return new DiaryDTO(
                 entity.getDiaryId(),
                 entity.getYear(),
